@@ -1,11 +1,8 @@
 <template>
 <div>
   <div class="intro">
-    <h1 class="title">Welcome to Wall Finder!</h1>
-    <p>The perfect wall finder for any lacrosse player!</p>
-    <p>We all know it is difficult at times to find a wall to play wall-ball against.
-    Here you can search your local area for a great wall to play wall-ball against!
-    Add your favorite walls to your "MY WALLS" page!</p>
+    <h1 class="title">User Finder</h1>
+    <p>Search here to find your favorite user and the walls that they have added!</p>
   </div>
   <div class="container">
     <div>
@@ -13,20 +10,20 @@
     </div>
     <div class="search">
       <form class="pure-form">
-        <i class="fas fa-search"></i><input v-model="searchText" placeholder="State"/>
+        <i class="fas fa-search"></i><input v-model="searchText" placeholder="Username"/>
       </form>
     </div>
   </div>
-  <WallList :walls="walls" />
+  <UserWalls :walls="walls" />
 </div>
 </template>
 
 <script>
-import WallList from "../components/WallList.vue"
+import UserWalls from "../components/UserWalls.vue"
 export default {
   name: 'Home',
   components: {
-    WallList
+    UserWalls
   },
   data() {
     return {
@@ -35,7 +32,7 @@ export default {
   },
   computed: {
     walls() {
-      return this.$root.$data.walls.filter(wall => wall.state.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+      return this.$root.$data.walls.filter(wall => wall.username.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
     }
   },
 }
